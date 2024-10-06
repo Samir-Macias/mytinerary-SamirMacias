@@ -1,22 +1,19 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import NavBar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 export default function StandarLayouts() {
     return (
         <>
             <header>
-                <h1>
-                    <header>
-                    </header>
-                </h1>
+               <NavBar></NavBar>
             </header>
             <main>
                 <Outlet></Outlet>
             </main>
             <footer>
-                <h2>
-                    <footer></footer>
-                </h2>
+              <Footer></Footer>
             </footer>
         </>
     )
