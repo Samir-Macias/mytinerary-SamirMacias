@@ -1,0 +1,8 @@
+@font-face {
+    font-family: Michella ;
+    src: url("../public/Milchella-Regular.ttf");
+}
+
+*{
+    font-family: Michella;
+}

@@ -1,8 +1,8 @@
-import { useState } from "react"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Home from "./Pages/Home"
 import Cities from "./Pages/Cities"
 import StandarLayouts from "./Layouts/StandarLayouts"
+import './App.css'
 
 const router = createBrowserRouter([
   {
@@ -13,9 +13,7 @@ const router = createBrowserRouter([
 
 ])
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
+   return (
     <>
       <RouterProvider router={router}></RouterProvider>
     </>
