@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Footer() {
     return (
-        <footer className="bg-gradient-to-r from-purple-900 via-black to-gray-800 text-white py-8">
+        <footer className="bg-gradient-to-r from-blue-950 via-black to-blue-950 text-white pt-8 pb-3">
             <div className="container mx-auto flex justify-between items-center flex-wrap">
 
                 <div className="w-full md:w-1/3 text-center md:text-left mb-6 md:mb-0">
@@ -16,7 +16,7 @@ export default function Footer() {
                 </div>
 
                 <div className="w-full md:w-1/3 text-center mb-6 md:mb-0">
-                    <h4 className="text-xl font-bold">Navegación</h4>
+                    <h4 className="text-xl font-bold">Navegation</h4>
                     <ul className="mt-4 space-y-2">
                         <li>
                             <NavLink to="/" className="text-gray-400 hover:text-white transition-colors duration-300">Home</NavLink>

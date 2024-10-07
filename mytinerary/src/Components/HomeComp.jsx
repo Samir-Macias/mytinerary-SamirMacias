@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
+import { FaEarthAmericas } from "react-icons/fa6";
 
 export default function CitiesCTA() {
     const navigate = useNavigate();
 
     return (
-        <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-16 px-6 sm:px-12 md:px-20 lg:px-28 rounded-lg shadow-lg overflow-hidden">
+        <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-16 px-6 sm:px-12 md:px-20 lg:px-28 rounded-lg shadow-lg overflow-hidden mt-7">
 
             <div className="absolute inset-0 overflow-hidden">
                 <img
@@ -20,7 +21,7 @@ export default function CitiesCTA() {
             </div>
 
             <div className="relative z-10 flex flex-col items-center text-center space-y-6">
-                <FaCity className="text-6xl text-yellow-400 animate-bounce" />
+                <FaEarthAmericas className="text-6xl text-yellow-400 animate-bounce" />
                 <h1 className="text-4xl font-extrabold md:text-5xl">Discover Amazing Cities</h1>
                 <p className="text-lg md:text-xl max-w-2xl">
                     Explore the most beautiful cities around the world. Dive into vibrant cultures, iconic landmarks, and unique experiences. Ready to start your journey?
@@ -28,9 +29,9 @@ export default function CitiesCTA() {
 
                 <button
                     onClick={() => navigate('/cities')}
-                    className="inline-flex items-center justify-center px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-black text-xl font-semibold rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-yellow-600 to-yellow-400 text-black text-xl font-semibold rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl animate-pulse"
                 >
-                    <FaCity className="mr-3 text-2xl" />
+                    <FaEarthAmericas className="mr-3 text-2xl" />
                     Explore Cities Now
                 </button>
             </div>
@@ -58,22 +59,22 @@ export function Carrusel() {
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    
+
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % 3); 
+            setCurrentSlide((prev) => (prev + 1) % 3);
         }, 6000);
-        return () => clearInterval(interval); 
+        return () => clearInterval(interval);
     }, []);
 
-    
+
     const slides = [];
     for (let i = 0; i < cities.length; i += 4) {
         slides.push(cities.slice(i, i + 4));
     }
-   
+
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto mt-5 pb-5">
             <h2 className="text-center text-3xl font-bold mb-6">Popular Mytineraries</h2>
             <div className="relative">
                 <div className="flex justify-center overflow-hidden">
@@ -86,7 +87,7 @@ export function Carrusel() {
                             {slide.map((city, i) => (
                                 <div key={i} className="w-72">
                                     <img src={city.image} alt={city.name} className="rounded-lg w-full h-60 object-cover" />
-                                    <p className="text-center mt-2 text-lg font-semibold">{city.name}</p>
+                                    <p className="text-center mt-2 text-xl font-semibold">{city.name}</p>
                                 </div>
                             ))}
                         </div>
@@ -94,16 +95,16 @@ export function Carrusel() {
                 </div>
                 <div className="flex justify-between absolute top-28 w-full transform ">
                     <button
-                        className=" opacity-10 hover:opacity-100 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-600 focus:outline-none transition-all duration-300 transform hover:scale-110 -left-2 absolute"
+                        className=" opacity-10 hover:opacity-100 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 -left-2 absolute"
                         onClick={() => setCurrentSlide((prev) => (prev === 0 ? 2 : prev - 1))}
                     >
-                        <GrPrevious/> 
+                        <GrPrevious />
                     </button>
                     <button
-                        className=" opacity-10 hover:opacity-100 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-600 focus:outline-none transition-all duration-300 transform hover:scale-110 -right-2 absolute"
+                        className=" opacity-10 hover:opacity-100 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 -right-2 absolute"
                         onClick={() => setCurrentSlide((prev) => (prev + 1) % 3)}
                     >
-                        <GrNext/>
+                        <GrNext />
                     </button>
                 </div>
             </div>

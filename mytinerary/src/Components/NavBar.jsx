@@ -9,7 +9,7 @@ const routes = [
 
 export default function NavBar() {
     return (
-        <nav className="bg-gradient-to-r from-purple-900 via-black to-gray-800 text-white py-4 shadow-lg">
+        <nav className="bg-gradient-to-r from-blue-950 via-black to-blue-950 text-white py-4 shadow-lg">
             <div className="container mx-auto flex justify-between items-center">
 
                 <div className="ml-3 text-xl font-bold tracking-wider text-gold">
@@ -20,8 +20,8 @@ export default function NavBar() {
                         <li key={index}>
                             <NavLink
                                 to={r.to}
-                                className={({ isActive }) =>
-                                    isActive ? "text-white font-bold " : "text-gray-400 hover:text-white transition-colors duration-300"
+                                className=  {({ isActive }) =>
+                                    isActive ? "text-white font-bold text-lg " : "text-gray-400 hover:text-white transition-colors duration-300 text-lg"
                                 }
                             >
                                 {r.text}
