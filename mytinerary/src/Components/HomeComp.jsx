@@ -109,7 +109,7 @@ export function Carrusel() {
                                     <img
                                         src={city.image}
                                         alt={city.name}
-                                        className=" rounded-lg w-full h-40 sm:h-48 md:col-span-12 lg:h-72 object-cover"
+                                        className=" rounded-lg w-full h-40 sm:h-48 md:h-60 lg:h-72 object-cover"
                                     />
                                     <p className="text-center mt-2 text-base sm:text-lg md:text-xl font-semibold">
                                         {city.name}
