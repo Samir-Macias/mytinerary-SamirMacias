@@ -1,6 +1,4 @@
-# mytinerary-SamirMacias
-
-# My Tineraries
+# My Tineraries - Samir Macias
 
 My Tineraries es una aplicación web que permite a los usuarios explorar itinerarios personalizados y descubrir ciudades de todo el mundo. Diseñada con una interfaz atractiva y fácil de usar, la aplicación ofrece una experiencia de usuario fluida y emocionante.
 
