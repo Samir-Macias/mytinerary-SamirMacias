@@ -55,8 +55,8 @@ export default function Footer() {
                 </div>
             </div>
             <div className="text-center mt-8">
-                <p className="text-sm">© {new Date().getFullYear()} My Tineraries. Todos los derechos reservados.</p>
+                <p className="text-sm">© {new Date().getFullYear()} My Tineraries. - Samir Macias.</p>
             </div>
         </footer>
     );
-}
+}   

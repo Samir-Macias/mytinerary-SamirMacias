@@ -1,4 +1,3 @@
-import { FaCity } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { GrNext } from "react-icons/gr";
@@ -43,66 +42,93 @@ export default function CitiesCTA() {
 
 export function Carrusel() {
     const cities = [
-        { name: "New York", image: "https://i.natgeofe.com/k/5b396b5e-59e7-43a6-9448-708125549aa1/new-york-statue-of-liberty.jpg" },
-        { name: "Paris", image: "https://wallpapers.com/images/featured/paris-zy4x2ow5p7j5qi4a.jpg" },
-        { name: "Tokyo", image: "https://d0626f1e44.clvaw-cdnwnd.com/efd82a4c10d67d793c62b322158b9943/200002120-9d5669d568/shinjuku-8.jpeg?ph=d0626f1e44" },
-        { name: "London", image: "https://assets.editorial.aetnd.com/uploads/2019/03/topic-london-gettyimages-760251843-feature.jpg" },
-        { name: "Sydney", image: "https://dingoos.com/wp-content/uploads/2017/11/estudiar-en-sydney-1.jpg" },
-        { name: "Dubai", image: "https://cdn.britannica.com/15/189715-050-4310222B/Dubai-United-Arab-Emirates-Burj-Khalifa-top.jpg" },
-        { name: "Rome", image: "https://static.nationalgeographic.es/files/styles/image_3200/public/colosseum-daylight-rome-italy.jpg?w=1600&h=900" },
-        { name: "Berlin", image: "https://www.berlin-welcomecard.de/system/files/styles/metatag_og_large/private/images/blick_auf_die_berliner_innenstadt_mit_dem_fernsehturm_web.jpg?itok=fKCo7T8F" },
-        { name: "Rio de Janeiro", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Cidade_Maravilhosa.jpg/800px-Cidade_Maravilhosa.jpg" },
-        { name: "Moscow", image: "https://viajesoceanic.com/wp-content/uploads/2018/03/Moscu.jpg" },
-        { name: "Toronto", image: "https://www.toronto.ca/wp-content/uploads/2024/07/8fc2-social-VEO.jpg" },
-        { name: "Amsterdam", image: "https://img2.rtve.es/i/?w=1600&i=1698226240350.jpg" },
+        { name: "Madrid", image: "https://media.timeout.com/images/105852421/750/422/image.jpg" },
+        { name: "Bangkok", image: "https://www.vietnamstay.es/DataUpload/Attractions/201932822432-bangkok-overview-aerial-view-2.jpg" },
+        { name: "Istanbul", image: "https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2019/12/24/5fa5393804286.r_d.499-319-0.jpeg" },
+        { name: "Toronto", image: "https://d1l57x9nwbbkz.cloudfront.net/files/s3fs-public/2021-12/Toronto_CIty_Highlights.jpg?VersionId=7E_yx1gQZzXtt4v5KDAAZnU0wMSyI8Z1" },
+        { name: "Hong Kong", image: "https://cdn.pixabay.com/photo/2023/11/08/09/48/hong-kong-8374423_1280.jpg" },
+        { name: "Los Angeles", image: "https://www.clarin.com/2018/12/26/srvVCcUrc_1256x620__1.jpg" },
+        { name: "Lisbon", image: "https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2023/02/15/istock-478897762.jpeg" },
+        { name: "Cairo", image: "https://www.egiptoexclusivo.com/wp-content/uploads/2023/06/panorama-cairo.jpg" },
+        { name: "Buenos Aires", image: "https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/07/03201757/Ciudades-mas-caras-de-America-Latina-Buenos-Aires.jpg" },
+        { name: "Santorini", image: "https://static.cpau.org/revistanotas/contenidos/39/Santorini.jpg" },
+        { name: "Seoul", image: "https://pohcdn.com/guide/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Seoul-1.jpg" },
+        { name: "Monaco", image: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Monte_Carlo_Port_Hercules_b.jpg" }
     ];
 
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [imagesPerSlide, setImagesPerSlide] = useState(4);
 
+    useEffect(() => {
+        const updateImagesPerSlide = () => {
+            const width = window.innerWidth;
+            if (width < 640) {
+                setImagesPerSlide(1);
+            } else if (width < 1000) {
+                setImagesPerSlide(2);
+            } else if (width < 1224) {
+                setImagesPerSlide(3);
+            } else {
+                setImagesPerSlide(4);
+            }
+        };
+
+        updateImagesPerSlide();
+        window.addEventListener("resize", updateImagesPerSlide);
+
+        return () => window.removeEventListener("resize", updateImagesPerSlide);
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % 3);
-        }, 6000);
+            setCurrentSlide((prev) => (prev + 1) % Math.ceil(cities.length / imagesPerSlide));
+        }, 8000);
         return () => clearInterval(interval);
-    }, []);
-
+    }, [imagesPerSlide]);
 
     const slides = [];
-    for (let i = 0; i < cities.length; i += 4) {
-        slides.push(cities.slice(i, i + 4));
+    for (let i = 0; i < cities.length; i += imagesPerSlide) {
+        slides.push(cities.slice(i, i + imagesPerSlide));
     }
 
     return (
-        <div className="container mx-auto mt-5 pb-5">
-            <h2 className="text-center text-3xl font-bold mb-6">Popular Mytineraries</h2>
+        <div className=" container mx-auto mt-5 pb-5">
+            <h2 className="text-center text-2xl md:text-3xl font-bold mb-6">Popular Mytineraries</h2>
             <div className="relative">
                 <div className="flex justify-center overflow-hidden">
                     {slides.map((slide, index) => (
                         <div
-                            className={`flex space-x-4 transition-all duration-800 ease-in-out ${index === currentSlide ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}
+                            className={`flex justify-center space-x-4 transition-all duration-800 ease-in-out ${
+                                index === currentSlide ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+                            }`}
                             key={index}
                             style={{ display: index === currentSlide ? "flex" : "none" }}
                         >
                             {slide.map((city, i) => (
-                                <div key={i} className="w-72">
-                                    <img src={city.image} alt={city.name} className="rounded-lg w-full h-60 object-cover" />
-                                    <p className="text-center mt-2 text-xl font-semibold">{city.name}</p>
+                                <div key={i} className=" flex flex-col w-full sm:w-1/2 md:w-1/3 lg:w-72">
+                                    <img
+                                        src={city.image}
+                                        alt={city.name}
+                                        className=" rounded-lg w-full h-40 sm:h-48 md:col-span-12 lg:h-72 object-cover"
+                                    />
+                                    <p className="text-center mt-2 text-base sm:text-lg md:text-xl font-semibold">
+                                        {city.name}
+                                    </p>
                                 </div>
                             ))}
                         </div>
                     ))}
                 </div>
-                <div className="flex justify-between absolute top-28 w-full transform ">
+                <div className="flex justify-between absolute top-20 sm:top-28 w-full transform">
                     <button
-                        className=" opacity-10 hover:opacity-100 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 -left-2 absolute"
-                        onClick={() => setCurrentSlide((prev) => (prev === 0 ? 2 : prev - 1))}
+                        className="opacity-10 hover:opacity-100 bg-gray-800 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 left-1 absolute"
+                        onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
                     >
                         <GrPrevious />
                     </button>
                     <button
-                        className=" opacity-10 hover:opacity-100 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 -right-2 absolute"
-                        onClick={() => setCurrentSlide((prev) => (prev + 1) % 3)}
+                        className="opacity-10 hover:opacity-100 bg-gray-800 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 right-1 absolute"
+                        onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
                     >
                         <GrNext />
                     </button>
@@ -111,4 +137,3 @@ export function Carrusel() {
         </div>
     );
 }
-
