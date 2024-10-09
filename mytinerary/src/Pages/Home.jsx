@@ -9,7 +9,7 @@ export default function Home() {
     return (
         <>
             <div className="bg-slate-500">
-                <div className="relative h-screen py-16 px-6 sm:px-12 md:px-20 lg:px-28 rounded-lg shadow-lg overflow-hidden">
+                <div className="relative h-screen py-16 px-6 sm:px-12 md:px-20 lg:px-28 shadow-lg overflow-hidden">
                     <video
                         autoPlay
                         loop

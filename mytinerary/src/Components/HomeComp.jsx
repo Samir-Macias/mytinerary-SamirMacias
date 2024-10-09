@@ -8,7 +8,7 @@ export default function CitiesCTA() {
     const navigate = useNavigate();
 
     return (
-        <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-16 px-6 sm:px-12 md:px-20 lg:px-28 rounded-lg shadow-lg overflow-hidden mt-7">
+        <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-16 px-6 sm:px-12 md:px-20 lg:px-28 shadow-lg overflow-hidden mt-7">
 
             <div className="absolute inset-0 overflow-hidden">
                 <img
@@ -92,7 +92,7 @@ export function Carrusel() {
     }
 
     return (
-        <div className=" container mx-auto mt-5 pb-5">
+        <div className="container mx-auto mt-5 pb-5">
             <h2 className="text-center text-2xl md:text-3xl font-bold mb-6">Popular Mytineraries</h2>
             <div className="relative">
                 <div className="flex justify-center overflow-hidden">
@@ -105,11 +105,11 @@ export function Carrusel() {
                             style={{ display: index === currentSlide ? "flex" : "none" }}
                         >
                             {slide.map((city, i) => (
-                                <div key={i} className=" flex flex-col w-full sm:w-1/2 md:w-1/3 lg:w-72">
+                                <div key={i} className="flex flex-col w-full sm:w-full md:w-1/3 lg:w-72">
                                     <img
                                         src={city.image}
                                         alt={city.name}
-                                        className=" rounded-lg w-full h-40 sm:h-48 md:h-60 lg:h-72 object-cover"
+                                        className="rounded-lg w-full h-40 sm:h-48 md:h-60 lg:h-72 object-cover"
                                     />
                                     <p className="text-center mt-2 text-base sm:text-lg md:text-xl font-semibold">
                                         {city.name}
@@ -119,21 +119,23 @@ export function Carrusel() {
                         </div>
                     ))}
                 </div>
-                <div className="flex justify-between absolute top-20 sm:top-28 w-full transform">
+                <div className="flex justify-between absolute top-10 sm:top-20 md:top-28 w-full transform">
                     <button
-                        className="opacity-10 hover:opacity-100 bg-gray-800 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 left-1 absolute"
+                        className="opacity-70 hover:opacity-100 bg-gray-800 text-white p-2 sm:p-3 md:p-4 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 left-2 sm:left-3 md:left-5"
                         onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
                     >
-                        <GrPrevious />
+                        <GrPrevious className="text-lg sm:text-xl md:text-2xl" />
                     </button>
                     <button
-                        className="opacity-10 hover:opacity-100 bg-gray-800 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 right-1 absolute"
+                        className="opacity-70 hover:opacity-100 bg-gray-800 text-white p-2 sm:p-3 md:p-4 rounded-full shadow-lg hover:bg-gradient-to-r from-gray-600 to-gold focus:outline-none transition-all duration-300 transform hover:scale-110 right-2 sm:right-3 md:right-5"
                         onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
                     >
-                        <GrNext />
+                        <GrNext className="text-lg sm:text-xl md:text-2xl" />
                     </button>
                 </div>
             </div>
         </div>
     );
 }
+
+
