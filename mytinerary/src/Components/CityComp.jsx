@@ -92,7 +92,7 @@ export default function CardCity() {
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-600">No cities found matching your search.</p>
+            <p className="text-center text-2xl font-bold text-gray-950">No cities found matching your search.</p>
           )}
         </div>
       </div>
