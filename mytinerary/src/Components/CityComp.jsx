@@ -49,7 +49,7 @@ export default function CardCity() {
 
     return (
         <div className="px-8 py-6">
-        {/* Campo de búsqueda estilizado */}
+      
         <div className="mb-8 relative max-w-lg mx-auto">
           <input
             type="text"
@@ -60,8 +60,6 @@ export default function CardCity() {
           />
           <FaSearch className="absolute left-4 top-3 text-gray-500" />
         </div>
-      
-        {/* Tarjetas de las ciudades */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCities.length > 0 ? (
             filteredCities.map((city, index) => (
@@ -69,23 +67,18 @@ export default function CardCity() {
                 key={index}
                 className="relative rounded-lg shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105 bg-white overflow-hidden border border-gray-200 hover:border-blue-500"
               >
-                {/* Imagen de la ciudad */}
                 <img
                   src={city.image}
                   alt={city.name}
-                  className="w-full h-64 object-cover" // Tamaño de imagen más grande
-                />
-      
-                {/* Contenido de la tarjeta */}
-                <div className="p-6 flex flex-col justify-between ">
+                  className="w-full h-64 object-cover" 
+                />     
+                <div className="p-6 h-56 flex flex-col justify-between ">
                   <div>
                     <h2 className="text-2xl font-bold mb-2 text-gray-800">{city.name}</h2>
                     <p className="text-gray-600 text-base mb-4">{city.description}</p>
                     <p className="text-green-500 font-semibold text-lg">Price: {city.price}</p>
                   </div>
-      
-                  {/* Rating y botón */}
-                  <div className="flex justify-between items-center mt-6">
+                  <div className="flex justify-between items-end mt-2">
                     <p className="text-yellow-500 font-medium">Rating: {city.rating} ⭐</p>
                     <Link
                       to={`/city/${city.name}`}
