@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCitiesFailure, fetchCitiesRequest, fetchCitiesSuccess } from '../store/actions/cityActions';
 
 export default function CardCity() {
-    const [cities, setCities] = useState([]);
+    const dispatch = useDispatch();
+    const {cities, loading, error} = useSelector((state) => state.cities);
     const [searchTerm, setSearchTerm] = useState('');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+
 
     useEffect(() => {
+
+        dispatch(fetchCitiesRequest());
+
         fetch('http://localhost:8080/api/cities/all')
             .then(response => {
                 if (!response.ok) {
@@ -17,19 +22,12 @@ export default function CardCity() {
                 return response.json();
             })
             .then(data => {
-                if (Array.isArray(data.response)) {
-                    setCities(data.response);
-                } else {
-                    setCities([]);
-                }
-                setLoading(false);
+              dispatch (fetchCitiesSuccess(data.response))
             })
             .catch(error => {
-                console.error('Error fetching data:', error);
-                setError(error.message);
-                setLoading(false);
+             dispatch(fetchCitiesFailure(data.message))
             });
-    }, []);
+    }, [dispatch]);
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
