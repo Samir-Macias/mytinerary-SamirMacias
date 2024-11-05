@@ -19,11 +19,11 @@ export default function CityDetail() {
         try {
           const response = await fetch(`http://localhost:8080/api/itinerary/filter?city=${cityName}`);
           const data = await response.json();
-          
+          console.log(data);
           if (response.ok) {
             dispatch(fetchItinerariesSuccess(data.response));
           } else {
-            dispatch(fetchItinerariesFailure('No itineraries found for this city'));
+            dispatch(fetchItinerariesFailure('No itineraries yet for this city'));
           }
         } catch (error) {
           dispatch(fetchItinerariesFailure(error.message));
@@ -38,18 +38,24 @@ export default function CityDetail() {
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+   
+    return (
+      <div className="flex justify-center items-center h-32">
+        <p className="text-5xl font-bold text-red-500 text-center">
+          {error}
+        </p>
+      </div>
+    );
   }
 
-  if (!itineraries || !Array.isArray(itineraries) || itineraries.length === 0) {
-    return <p>No itineraries yet for this city.</p>;
-  }
 
   return (
+    
     <div className="px-8 py-6">
       <h1 className="text-4xl font-bold text-center mb-8">{cityName} Itineraries</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {itineraries.map((itinerary) => (
+            
           <div key={itinerary._id} className="bg-white rounded-lg shadow-lg p-6">
             <img
               src={itinerary.image}
@@ -65,7 +71,7 @@ export default function CityDetail() {
               <h3 className="text-xl font-semibold">{itinerary.userName}</h3>
             </div>
             <h2 className="text-2xl font-bold mb-2">{itinerary.name}</h2>
-            <p className="text-gray-600 mb-2">Price: {itinerary.price } 💵</p>
+            <p className="text-gray-600 mb-2">Price: {itinerary.price} 💵</p>
             <p className="text-gray-600 mb-2">Duration: {itinerary.duration}</p>
             <p className="text-gray-600 mb-4">Likes: {itinerary.likes || 0} <FaRegThumbsUp className="inline-block" /></p>
             <div className="mb-4">
@@ -84,7 +90,7 @@ export default function CityDetail() {
             {viewMore === itinerary._id && (
               <div className="mt-4">
                 <p className="text-gray-600 mb-4">Comments: {itinerary.comments || "No comments available."}</p>
-                <p className="text-red-500 text-center">Under construction: Activities and more details coming soon!</p>
+                <p className="text-red-500 text-center fond-bold">Under construction: Activities and more details coming soon!</p>
               </div>
             )}
           </div>
