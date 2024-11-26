@@ -36,7 +36,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-8 shadow-lg rounded">
+    <div className="max-w-md mx-auto bg-white p-8 shadow-lg rounded mb-9">
       <h2 className="text-2xl font-bold mb-6">Sign In</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -46,7 +46,7 @@ export default function SignIn() {
           placeholder="Email"
           value={formData.email}
           onChange={handleInputChange}
-          className="block w-full p-2 mb-4 border rounded"
+          className="block w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <input
           type="password"
@@ -54,7 +54,7 @@ export default function SignIn() {
           placeholder="Password"
           value={formData.password}
           onChange={handleInputChange}
-          className="block w-full p-2 mb-4 border rounded"
+          className="block w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <button
           type="submit"
